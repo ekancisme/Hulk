@@ -1,89 +1,84 @@
-# HULK - Http Unbearable Load King 👑
+============================================================
+              HULK - HTTP Unbearable Load King 👑
+============================================================
 
-A powerful and simple-to-use Python-based DDoS attack script.
+A powerful DDoS attack script written in Python.
 
-Author: Sumalya Chatterjee  
-License: MIT  
-Python: 3.10+
+Author     : Sumalya Chatterjee  
+License    : MIT  
+Python     : 3.10 or higher (required)
 
-------------------------------------------
-INSTALLATION (for Debian/Ubuntu-based systems):
+------------------------------------------------------------
+INSTALLATION (FOR WINDOWS USERS - CMD):
 
-1. Update your system
-   > sudo apt update && sudo apt upgrade -y
+1. Make sure Python 3.10+ is installed.
+   Download from: https://www.python.org/downloads/
+   During installation, check: "Add Python to PATH"
 
-2. Install Python and Git
-   > sudo apt install python3 python3-pip git -y
+2. Install Git for Windows (if not installed):
+   Download from: https://git-scm.com/download/win
 
-3. Clone the repository
-   > git clone https://github.com/R3DHULK/HULK.git
-   > cd HULK
+3. Open Command Prompt (CMD) and clone the repository:
+   git clone https://github.com/R3DHULK/HULK.git
+   cd HULK
 
-4. Install dependencies
-   > python3 -m pip install -r requirements.txt
+4. Install Python dependencies:
+   pip install -r requirements.txt
 
-5. Run the script
-   > python3 hulk.py
+5. Run the script:
+   python hulk.py
 
-------------------------------------------
-⚠️ DEBIAN WARNING (if you get a "externally-managed-environment" error):
+------------------------------------------------------------
+TROUBLESHOOTING:
 
-Use apt to install required packages instead of pip:
+If you see errors related to missing modules (e.g. scapy, django, tkinter), install them manually:
 
-> sudo apt install python3-scapy
-> sudo apt install python3-django
-> sudo apt install python3-tk
+   pip install scapy
+   pip install django
+   pip install tk
 
-------------------------------------------
-❗ WHAT IS A DDoS ATTACK?
+Note: If `pip` is not recognized, use:
+   py -m pip install <package-name>
 
-DDoS (Distributed Denial of Service) attacks flood a target (website/server) with traffic from multiple sources, overwhelming its capacity and making it unavailable to real users.
+------------------------------------------------------------
+WHAT IS A DDoS ATTACK?
 
-Types of DDoS Attacks:
+DDoS (Distributed Denial of Service):
+An attack where multiple systems flood a server with traffic,
+causing it to crash or become unavailable to users.
+
+------------------------------------------------------------
+TYPES OF DDoS ATTACKS:
 
 1. Application Layer Attacks:
-   - Repeated HTTP requests to overload server-side processing.
-   - Example: HTTP flood using multiple fake IPs.
+   - Flood the server with HTTP or web-based requests.
 
 2. Protocol Attacks:
-   - Exhaust server or firewall resources using malformed packets.
-   - Example: SYN Flood – overwhelms TCP handshakes.
+   - Exploit networking protocols (e.g., SYN flood).
 
 3. Volumetric Attacks:
-   - Overload bandwidth using amplified traffic.
-   - Example: DNS Amplification.
+   - Overwhelm server bandwidth (e.g., DNS amplification).
 
-------------------------------------------
-⚠️ DDoS THREATS:
+------------------------------------------------------------
+MOTIVES BEHIND DDoS ATTACKS:
 
-- Botnets controlled remotely to coordinate mass attacks.
-- Tools originally designed for testing are being misused by attackers.
-- Even small-scale "stresser" tools can cripple major websites if used in combination.
+- Ransom (financial extortion)
+- Hacktivism (political or social motives)
+- Business Competition (disrupt rival services)
 
-------------------------------------------
-🚨 CHALLENGES WITH DDoS ATTACKS:
+------------------------------------------------------------
+PREVENTION STRATEGIES:
 
-- DNS floods, cloud-targeted attacks, and bandwidth exhaustion.
-- Attacks that slow services without taking them offline can evade detection.
-- IoT devices are increasing points of vulnerability.
-- Organizations are often targeted repeatedly once found vulnerable.
+- Real-time packet filtering
+- DDoS Defense Systems (DDS)
+- Web Application Firewalls (WAF)
+- Request rate limiting
 
-------------------------------------------
-❓ WHY DO DDoS ATTACKS HAPPEN?
+------------------------------------------------------------
+DISCLAIMER:
 
-- 💰 Ransom: Demands made before or after attacks.
-- 🗣️ Hacktivism: To express support/opposition toward a cause.
-- 💼 Business Rivalry: Competitors may target each other.
+This tool is for educational or authorized testing use only.
 
-------------------------------------------
-🛡️ PREVENTIVE MEASURES:
-
-- Real-time packet filtering and analysis
-- Deploy a DDoS Defense System (DDS)
-- Use a Web Application Firewall (WAF)
-- Apply rate-limiting rules to control traffic
-
-------------------------------------------
-
-⚠️ Disclaimer:  
-This script is for **educational and ethical testing purposes only**. Unauthorized use on servers or networks you don’t own is **illegal** and may result in prosecution.
+DO NOT use this against systems you do not own.
+Unauthorized usage is illegal and punishable by law.
+You are fully responsible for your actions.
